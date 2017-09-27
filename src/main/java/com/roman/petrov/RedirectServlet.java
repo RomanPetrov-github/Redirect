@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 public class RedirectServlet extends HttpServlet{
     @Override
@@ -24,11 +25,15 @@ public class RedirectServlet extends HttpServlet{
                 "   orel.tele2.ru/tariffs/ orel.tele2.ru/tariff/my-choice-300-10 302</redirect>\n" +
                 "   <link>https://bpm.tele2.ru/0/Nui/ViewModule.aspx#CardModuleV2/CasePage/edit/281bb33a-75a8-465a-806b-00ca3a138df2</link>\n" +
                 "</incident>";
-        try {
+        try
+        {
             Incident incident = new IncidentBuilder(xml).build();
             System.out.println("list size = " + incident.getListRedirects().size());
-
-        } catch (JAXBException e) {
+            for(Redirect redirect: incident.getListRedirects()){
+                DBWorker.saveRedirect(redirect);
+            }
+        }
+        catch (JAXBException e) {
             e.printStackTrace();
         }
     }

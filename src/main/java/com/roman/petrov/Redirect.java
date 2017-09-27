@@ -26,9 +26,6 @@ public class Redirect {
         return userAgent;
     }
 
-    public String getSqlInsert(){
-        return "INSERT INTO redirects (request_id, url_from, url_to, code, user_agent) VALUES (?, ?, ?, ?, ?);";
-    }
     @Override
     public String toString() {
         return urlSource + urlDestination + code + userAgent;

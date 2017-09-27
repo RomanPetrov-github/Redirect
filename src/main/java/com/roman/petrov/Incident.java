@@ -17,7 +17,7 @@ public class Incident {
     }
 
     public void createListRedirects(){
-        List<Redirect> result = new ArrayList<>();
+        List<Redirect> result = new ArrayList<Redirect>();
         String[] split = redirect.split("\n");
         for(int i = 0; i < split.length; i++){
             String[] redir = split[i].trim().split(" ");
@@ -32,8 +32,6 @@ public class Incident {
             listRedirects = result;
         }
     }
-
-
 
     public void setAuthor(String author) {
         this.author = author;
