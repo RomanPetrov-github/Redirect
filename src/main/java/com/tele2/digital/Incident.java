@@ -1,4 +1,4 @@
-package com.roman.petrov;
+package com.tele2.digital;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class Incident {
     public Incident() {
     }
 
-    public void createListRedirects(){
+    public void createListRedirects() {
         List<Redirect> result = new ArrayList<Redirect>();
         String[] split = redirect.split("\n");
         for(int i = 0; i < split.length; i++){

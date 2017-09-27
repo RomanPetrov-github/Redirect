@@ -1,4 +1,4 @@
-package com.roman.petrov;
+package com.tele2.digital;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;

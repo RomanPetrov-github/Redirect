@@ -1,4 +1,4 @@
-package com.roman.petrov;
+package com.tele2.digital;
 
 import java.sql.*;
 

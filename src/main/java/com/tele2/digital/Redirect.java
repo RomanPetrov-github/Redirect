@@ -1,10 +1,12 @@
-package com.roman.petrov;
+package com.tele2.digital;
 
 public class Redirect {
     private String urlSource;
     private String urlDestination;
     private int code;
     private String userAgent;
+
+    private Integer validateStatusCode ;
 
     public Redirect(String urlSource, String urlDestination, int code, String userAgent) {
         this.urlSource = urlSource;
@@ -24,6 +26,10 @@ public class Redirect {
     }
     public String getUserAgent() {
         return userAgent;
+    }
+
+    public void setValidateStatusCode(Integer validateStatusCode) {
+        this.validateStatusCode = validateStatusCode;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.roman.petrov;
+package com.tele2.digital;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 
 public class RedirectServlet extends HttpServlet{
     @Override
@@ -29,9 +28,10 @@ public class RedirectServlet extends HttpServlet{
         {
             Incident incident = new IncidentBuilder(xml).build();
             System.out.println("list size = " + incident.getListRedirects().size());
-            for(Redirect redirect: incident.getListRedirects()){
-                DBWorker.saveRedirect(redirect);
-            }
+            ValidatorURL.validateURL(incident);
+//            for(Redirect redirect: incident.getListRedirects()){
+//                DBWorker.saveRedirect(redirect);
+//            }
         }
         catch (JAXBException e) {
             e.printStackTrace();
