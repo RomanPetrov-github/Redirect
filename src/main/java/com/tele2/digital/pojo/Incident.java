@@ -1,4 +1,4 @@
-package com.tele2.digital;
+package com.tele2.digital.pojo;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
@@ -6,6 +6,7 @@ import java.util.List;
 
 @XmlRootElement(name = "incident")
 public class Incident {
+
     private String author;
     private String number;
     private String description;

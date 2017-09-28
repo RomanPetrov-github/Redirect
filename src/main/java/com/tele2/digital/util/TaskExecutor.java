@@ -1,4 +1,4 @@
-package com.tele2.digital;
+package com.tele2.digital.util;
 
 import com.tele2.digital.exception.ValidateUrlException;
 import org.apache.http.HttpResponse;

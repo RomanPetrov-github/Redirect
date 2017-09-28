@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>redirectServlet</servlet-name>
-        <servlet-class>com.roman.petrov.RedirectServlet</servlet-class>
+        <servlet-class>com.tele2.digital.RedirectServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

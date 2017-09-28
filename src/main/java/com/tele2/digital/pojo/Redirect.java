@@ -1,6 +1,7 @@
-package com.tele2.digital;
+package com.tele2.digital.pojo;
 
 public class Redirect {
+
     private String urlSource;
     private String urlDestination;
     private int code;

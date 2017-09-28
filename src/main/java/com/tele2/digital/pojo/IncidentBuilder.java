@@ -1,4 +1,4 @@
-package com.tele2.digital;
+package com.tele2.digital.pojo;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -6,6 +6,7 @@ import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
 
 public class IncidentBuilder {
+
     private final String xml;
 
     public IncidentBuilder(String xml) {

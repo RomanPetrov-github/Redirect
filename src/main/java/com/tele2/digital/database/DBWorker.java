@@ -1,4 +1,6 @@
-package com.tele2.digital;
+package com.tele2.digital.database;
+
+import com.tele2.digital.pojo.Redirect;
 
 import java.sql.*;
 
