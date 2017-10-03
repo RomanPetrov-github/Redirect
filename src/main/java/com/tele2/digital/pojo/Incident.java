@@ -69,9 +69,6 @@ public class Incident {
         return listRedirects;
     }
 
-    public String getSqlInsert(){
-        return  "INSERT INTO requests (author, number, description, link) VALUES (?, ?, ?, ?);";
-    }
     @Override
     public String toString() {
         return String.format("author = %s, number = %s, description = %s, redirect = %s, link = %s",

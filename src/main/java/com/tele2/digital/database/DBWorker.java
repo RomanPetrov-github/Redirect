@@ -1,5 +1,6 @@
 package com.tele2.digital.database;
 
+import com.tele2.digital.pojo.Incident;
 import com.tele2.digital.pojo.Redirect;
 
 import java.sql.*;
@@ -54,5 +55,32 @@ public class DBWorker {
         }
     }
 
+    public static Integer saveIncident(Incident incident){
+        Integer id = null;
+
+        try {
+            openConnection();
+            String sql = String.format("INSERT INTO 'incidents' ('author', 'number', 'description', 'link') VALUES ('%s', '%s', '%s', '%s');",
+                                                                    incident.getAuthor(),
+                                                                    incident.getNumber(),
+                                                                    incident.getDescription(),
+                                                                    incident.getLink());
+
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.executeUpdate();
+            System.out.println("Incident сохранен");
+
+
+            ResultSet resultSet = connection.prepareStatement("SELECT last_insert_id(redirects.id)").executeQuery();
+            id = resultSet.getInt("id");
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            closeConnection();
+        }
+        return id;
+    }
 
 }
