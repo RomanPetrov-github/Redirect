@@ -1,11 +1,12 @@
 package com.tele2.digital;
 
-import com.tele2.digital.database.DBWorker;
 import com.tele2.digital.pojo.Incident;
 import com.tele2.digital.pojo.IncidentBuilder;
 import com.tele2.digital.pojo.Redirect;
+import com.tele2.digital.util.HibernateUtil;
 import com.tele2.digital.util.ValidatorURL;
 import org.apache.commons.codec.binary.Base64;
+import org.hibernate.Session;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,47 +28,16 @@ public class RedirectServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        if (validateCredentials(req.getHeader("Authorization"))){
-            resp.sendError(401);
-            return;
-        }
-
+//        if (validateCredentials(req.getHeader("Authorization"))){
+//            resp.sendError(401);
+//            return;
+//        }
+//
 //        PrintWriter out = resp.getWriter();
 //        out.print("<h1>Hello Servlet</h1>");
-//        System.out.println("=================================================================");
-//
-//        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
-//                "<incident>\n" +
-//                "   <author>Смердов Александр Сергеевич</author>\n" +
-//                "   <number>SR00819068</number>\n" +
-//                "   <description>Редирект с раздела «Тарифы» в Карелиию. Задача срочная.</description>\n" +
-//                "   <redirect>karelia.tele2.ru/tariffs/ karelia.tele2.ru/tariff/my-choice-300-10 302\n" +
-//                "   orel.tele2.ru/tariffs/ orel.tele2.ru/tariff/my-choice-300-10 302</redirect>\n" +
-//                "   <link>https://bpm.tele2.ru/0/Nui/ViewModule.aspx#CardModuleV2/CasePage/edit/281bb33a-75a8-465a-806b-00ca3a138df2</link>\n" +
-//                "</incident>";
-//        try
-//        {
-//            Incident incident = new IncidentBuilder(xml).build();
-//            System.out.println("list size = " + incident.getListRedirects().size());
-//            ValidatorURL.validateURL(incident);
-//            for(Redirect redirect: incident.getListRedirects()){
-//                DBWorker.saveRedirect(redirect);
-//            }
-//        }
-//        catch (JAXBException e) {
-//            e.printStackTrace();
-//        }
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (validateCredentials(req.getHeader("Authorization"))){
-            resp.sendError(401);
-            return;
-        }
 
         PrintWriter out = resp.getWriter();
-        out.print("<h1>Hello Servlet</h1>");
+        out.print("<h1>S</h1>");
         System.out.println("=================================================================");
 
         String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
@@ -85,11 +55,25 @@ public class RedirectServlet extends HttpServlet{
             System.out.println("list size = " + incident.getListRedirects().size());
             ValidatorURL.validateURL(incident);
             for(Redirect redirect: incident.getListRedirects()){
-                DBWorker.saveRedirect(redirect);
+                System.out.println("Maven + Hibernate + MySQL");
+                Session session = HibernateUtil.getSessionFactory().openSession();
+                session.beginTransaction();
+
+                session.save(redirect);
+
+                session.getTransaction().commit();
             }
         }
         catch (JAXBException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        if (validateCredentials(req.getHeader("Authorization"))){
+//            resp.sendError(401);
+//            return;
+//        }
     }
 }
