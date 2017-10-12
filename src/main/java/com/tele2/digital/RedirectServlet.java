@@ -54,13 +54,16 @@ public class RedirectServlet extends HttpServlet{
             Incident incident = new IncidentBuilder(xml).build();
             System.out.println("list size = " + incident.getListRedirects().size());
             ValidatorURL.validateURL(incident);
+            System.out.println("Maven + Hibernate + MySQL");
+            Session sessionIncident = HibernateUtil.getSessionFactory().openSession();
+            sessionIncident.beginTransaction();
+            sessionIncident.save(incident);
+            sessionIncident.getTransaction().commit();
+            sessionIncident.close();
             for(Redirect redirect: incident.getListRedirects()){
-                System.out.println("Maven + Hibernate + MySQL");
                 Session session = HibernateUtil.getSessionFactory().openSession();
                 session.beginTransaction();
-
                 session.save(redirect);
-
                 session.getTransaction().commit();
             }
         }

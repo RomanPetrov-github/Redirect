@@ -7,6 +7,7 @@ import java.util.List;
 @XmlRootElement(name = "incident")
 public class Incident {
 
+    private int incidentID;
     private String author;
     private String number;
     private String description;
@@ -34,6 +35,9 @@ public class Incident {
         }
     }
 
+    public void setIncidentID(int incidentID) {
+        this.incidentID = incidentID;
+    }
     public void setAuthor(String author) {
         this.author = author;
     }
@@ -50,6 +54,9 @@ public class Incident {
         this.link = link;
     }
 
+    public int getIncidentID() {
+        return incidentID;
+    }
     public String getAuthor() {
         return author;
     }

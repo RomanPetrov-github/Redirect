@@ -1,7 +1,16 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
+    <class name="com.tele2.digital.pojo.Incident" table="incidents" catalog="REDIRECT_DB">
+        <id name="incidentID" type="int" column="id">
+            <generator class="identity"/>
+        </id>
+        <property name="author" type="java.lang.String" column="author"/>
+        <property name="number" type="java.lang.String" column="number"/>
+        <property name="description" type="java.lang.String" column="description"/>
+        <property name="link" type="java.lang.String" column="link"/>
+    </class>
 
 </hibernate-mapping>
